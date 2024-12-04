@@ -21,74 +21,34 @@ const Row = styled.div`
 `;
 
 const Line = styled.div`
-  // display: ${(props) => (props.hide ? "none" : "block")};
   width: 10px;
   height: 100%;
   position: absolute;
-  // background-color: white;
-
   height: calc(100% - ${endPosition + startPostion}px);
-
-  // background-color: ${(props) => (props.hide ? "black" : "white")};
   background-color: white;
-
-  // left: calc(50% - 5px);
-
-  // opacity: ${(props) => props.opacity};
-  // animation-name: rotateAnimation;
-  // animation-duration: 1ms; /* Firefox requires this to apply the animation */
-  // animation-direction: alternate;
-  // animation-timeline: scroll(block nearest);
-
-  // @keyframes rotateAnimation {
-  //   from {
-  //     height: ;
-  //   }
-  //   to {
-  //     color: orange;
-  //   }
-  // }
 `;
 
 const ScrollLine = styled.div`
   width: 10px;
-  // margin-top: 50vh;
   height: ${(props) => `${props.scrollPosition}px`};
-  // height: ${(props) =>
-    props.scrollPosition > `50vh` ? `${props.scrollPosition}px` : `50vh`};
   background-color: black;
-  // position: absolute;
-  // left: calc(50% - 5px);
 `;
 
 const EventsContainer = styled.div`
   height: auto;
   width: 100%;
   display: flex;
-  // align-items: center;
-  // justify-content: center;
   flex-wrap: wrap;
   position: relative;
   margin: 150px 0;
 `;
 
 const Rosary = styled.div`
-  // padding-top: 100px;
   width: 10px;
   height: 100%;
   position: absolute;
-  // background-color: grey;
-  // left: calc(50% - 5px);
-
-  // height: calc(100% - 36px);
   position: absolute;
   background-color: transparent;
-  // margin-top: 100px;
-  // margin-top: 50vh;
-  // height: 100%;
-  // margin-top: ${(props) =>
-    props.scrollPosition > `50vh` ? `${props.scrollPosition}px` : `50vh`};
-
   left: calc(50% - 5px);
 `;
 
@@ -96,8 +56,6 @@ const Categories = styled.div`
   display: flex;
   flex-direction: column;
   background-color: rgba(255, 255, 255, 0.8);
-  // font-weight: bold;
-  // font-size: 16px;
   padding: 16px;
   position: fixed;
   left: 20px;
@@ -173,24 +131,13 @@ function App() {
   const [scrollPosition, setScrollPosition] = useState(startPostion);
   const [hideScrollLine, setHideScrollLine] = useState(false);
 
-  // const startRef = useRef(null);
   const scrollRef = useRef(null);
 
   const handleScroll = () => {
-    // const position = window.scrollY + window.innerHeight / 2.2;
-
     const position =
       window.scrollY < window.innerHeight / 5
         ? startPostion
         : `${window.scrollY + window.innerHeight / 5}`;
-
-    // const position =
-    //   window.scrollY > endRef.current.getBoundingClientRect().y
-    //     ? window.scrollY + window.innerHeight / 2.5
-    //     : endRef.current.getBoundingClientRect().y;
-
-    // console.log(endRef.current.getBoundingClientRect());
-    // console.log(window.scrollY);
 
     setScrollPosition(position);
   };
@@ -204,80 +151,6 @@ function App() {
     };
   }, []);
 
-  function checkIfHeaderIsOverlapping() {
-    if (scrollRef.current && endRef.current) {
-      const a = scrollRef.current.getBoundingClientRect();
-      const b = endRef.current.getBoundingClientRect();
-
-      console.log("scroll", scrollRef.current.offsetTop);
-      console.log("end", endRef.current.y);
-
-      console.log(window.scrollY);
-      console.log("scroll", a, "end", b);
-      if (b.bottom <= a.bottom) {
-        console.log("hide");
-
-        setHideScrollLine(true);
-      } else {
-        setHideScrollLine(false);
-      }
-    }
-  }
-
-  useEffect(() => {
-    function watchScroll() {
-      window.addEventListener("scroll", checkIfHeaderIsOverlapping);
-    }
-    watchScroll();
-
-    return () => {
-      window.removeEventListener("scroll", checkIfHeaderIsOverlapping);
-    };
-  });
-
-  // useEffect(() => {
-  //   // let target = scrollRef.current;
-
-  //   const observer = new IntersectionObserver((entries) => {
-  //     let doesOverlap =
-  //       entries[0].boundingClientRect.y >=
-  //       scrollRef.current.getBoundingClientRect().y;
-
-  //     console.log("end ref", endRef.current.getBoundingClientRect().y);
-  //     console.log("scroll ref", entries[0].boundingClientRect.y);
-
-  //     // console.log("doesOverlap", entries[0]);
-  //     // console.log("doesOverlap", doesOverlap);
-  //     console.log(scrollRef.current.getBoundingClientRect());
-  //     console.log(entries[0].boundingClientRect);
-
-  //     if (doesOverlap) {
-  //       console.log("doesOverlap");
-  //       setHideScrollLine(true);
-  //     }
-  //     if (entries[0].isIntersecting) {
-  //       console.log("isIntersecting");
-  //     }
-  //   });
-
-  //   if (endRef.current) {
-  //     // observer.observe(endRef.current);
-  //     observer.observe(endRef.current);
-  //   }
-
-  //   return () => {
-  //     if (endRef.current) {
-  //       observer.unobserve(endRef.current);
-  //     }
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   console.log("consoleRef", consoleRef);
-  //   console.log("current", consoleRef.current);
-  //   console.log("scrollHeight", consoleRef.current.offsetHeight);
-  // }, []);
-
   return (
     <>
       <Categories>
@@ -289,34 +162,19 @@ function App() {
         ))}
       </Categories>
       <Title> In memoriam </Title>
-      {/* <RosaryContainer> */}
-      {/* <Rosary scrollPosition={scrollPosition}>
-        <Line hide={hideScrollLine}>
-          <ScrollLine
-            scrollPosition={scrollPosition}
-            ref={scrollRef}
-            hide={hideScrollLine}
-          />
-        </Line>
-      </Rosary> */}
-      {/* </RosaryContainer> */}
       <MainContent>
         <EventsContainer>
           {events.map(({ title, description, year, category }, index) => {
             return (
               <Row key={title} index={index}>
                 <Year index={index}>{year}</Year>
-
                 <Event
                   index={index}
                   title={title}
                   description={description}
                   category={category}
                 />
-
                 <Circle index={index} />
-
-                {/* {index === events.length - 1 && <Circle />} */}
               </Row>
             );
           })}
