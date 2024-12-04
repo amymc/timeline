@@ -5,14 +5,18 @@ import events from "./data/events.json";
 import { colors } from "./constants";
 import "./App.css";
 
+// 324 is height of first row
+const startPostion = 324 / 2;
+const endPosition = 468 / 8;
+
 const Row = styled.div`
   display: flex;
   flex-direction: ${(props) => (props.index % 2 === 0 ? "row-reverse" : "row")};
   text-align: ${(props) => (props.index % 2 === 0 ? "left" : "right")};
   width: 100%;
   justify-content: center;
-  margin-left: ${(props) => (props.index % 2 === 0 ? "47%" : "auto")};
-  margin-right: ${(props) => (props.index % 2 === 0 ? "auto" : "47%")};
+  margin-left: ${(props) => (props.index % 2 === 0 ? "44%" : "auto")};
+  margin-right: ${(props) => (props.index % 2 === 0 ? "auto" : "44%")};
   position: relative;
 `;
 
@@ -22,11 +26,14 @@ const Line = styled.div`
   height: 100%;
   position: absolute;
   // background-color: white;
-  height: calc(100% - 720px);
+
+  height: calc(100% - ${endPosition + startPostion}px);
+
   // background-color: ${(props) => (props.hide ? "black" : "white")};
   background-color: white;
 
-  left: calc(50% - 5px);
+  // left: calc(50% - 5px);
+
   // opacity: ${(props) => props.opacity};
   // animation-name: rotateAnimation;
   // animation-duration: 1ms; /* Firefox requires this to apply the animation */
@@ -46,7 +53,7 @@ const Line = styled.div`
 const ScrollLine = styled.div`
   width: 10px;
   // margin-top: 50vh;
-  height: ${(props) => props.scrollPosition};
+  height: ${(props) => `${props.scrollPosition}px`};
   // height: ${(props) =>
     props.scrollPosition > `50vh` ? `${props.scrollPosition}px` : `50vh`};
   background-color: black;
@@ -62,7 +69,7 @@ const EventsContainer = styled.div`
   // justify-content: center;
   flex-wrap: wrap;
   position: relative;
-  padding: 150px 0;
+  margin: 150px 0;
 `;
 
 const Rosary = styled.div`
@@ -72,7 +79,8 @@ const Rosary = styled.div`
   position: absolute;
   // background-color: grey;
   // left: calc(50% - 5px);
-  height: calc(100% - 100px);
+
+  // height: calc(100% - 36px);
   position: absolute;
   background-color: transparent;
   // margin-top: 100px;
@@ -80,25 +88,8 @@ const Rosary = styled.div`
   // height: 100%;
   // margin-top: ${(props) =>
     props.scrollPosition > `50vh` ? `${props.scrollPosition}px` : `50vh`};
-`;
 
-const Beads = styled.div`
-  position: absolute;
-  left: calc(50% - 15px);
-`;
-
-const Bead = styled.div`
-  background: rgba(255, 255, 255, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(5px);
-  width: 30px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  border-radius: 50%;
-  position: relative;
+  left: calc(50% - 5px);
 `;
 
 const Categories = styled.div`
@@ -140,8 +131,8 @@ const Year = styled.div`
   font-size: 22px;
   color: white;
   position: absolute;
-  left: ${(props) => (props.index % 2 === 0 ? "-100px" : "auto")};
-  right: ${(props) => (props.index % 2 === 0 ? "auto" : "-100px")};
+  left: ${(props) => (props.index % 2 === 0 ? "-75px" : "auto")};
+  right: ${(props) => (props.index % 2 === 0 ? "auto" : "-75px")};
   top: calc(50% - 15px);
 `;
 
@@ -158,8 +149,8 @@ const Conclusion = styled.div`
   text-align: justify;
 `;
 
-const RosaryContainer = styled.div`
-  position: relative;
+const MainContent = styled.div`
+  width: 998px;
 `;
 
 const Circle = styled.div`
@@ -171,15 +162,18 @@ const Circle = styled.div`
   background-color: white;
   position: absolute;
   top: calc(50% - 15px);
-  left: 15px;
+  left: ${(props) => (props.index % 2 === 0 ? "45px" : "auto")};
+  right: ${(props) => (props.index % 2 === 0 ? "auto" : "45px")};
   background: white;
+
+  z-index: 1;
 `;
 
 function App() {
-  const [scrollPosition, setScrollPosition] = useState("62.5vh");
+  const [scrollPosition, setScrollPosition] = useState(startPostion);
   const [hideScrollLine, setHideScrollLine] = useState(false);
 
-  const endRef = useRef(null);
+  // const startRef = useRef(null);
   const scrollRef = useRef(null);
 
   const handleScroll = () => {
@@ -187,8 +181,16 @@ function App() {
 
     const position =
       window.scrollY < window.innerHeight / 5
-        ? "62.5vh"
-        : `${window.scrollY + window.innerHeight / 2.5}px`;
+        ? startPostion
+        : `${window.scrollY + window.innerHeight / 5}`;
+
+    // const position =
+    //   window.scrollY > endRef.current.getBoundingClientRect().y
+    //     ? window.scrollY + window.innerHeight / 2.5
+    //     : endRef.current.getBoundingClientRect().y;
+
+    // console.log(endRef.current.getBoundingClientRect());
+    // console.log(window.scrollY);
 
     setScrollPosition(position);
   };
@@ -208,7 +210,7 @@ function App() {
       const b = endRef.current.getBoundingClientRect();
 
       console.log("scroll", scrollRef.current.offsetTop);
-      console.log("end", endRef.current.offsetTop);
+      console.log("end", endRef.current.y);
 
       console.log(window.scrollY);
       console.log("scroll", a, "end", b);
@@ -288,7 +290,7 @@ function App() {
       </Categories>
       <Title> In memoriam </Title>
       {/* <RosaryContainer> */}
-      <Rosary scrollPosition={scrollPosition}>
+      {/* <Rosary scrollPosition={scrollPosition}>
         <Line hide={hideScrollLine}>
           <ScrollLine
             scrollPosition={scrollPosition}
@@ -296,55 +298,63 @@ function App() {
             hide={hideScrollLine}
           />
         </Line>
-        {/* <Beads>
-          {[...Array(200)].map((e, i) => (
-            <Bead key={i} />
-          ))}
-        </Beads> */}
-      </Rosary>
+      </Rosary> */}
       {/* </RosaryContainer> */}
-      <EventsContainer>
-        {events.map(({ title, description, year, category }, index) => {
-          return (
-            <Row key={title} index={index}>
-              <Year index={index}>{year}</Year>
+      <MainContent>
+        <EventsContainer>
+          {events.map(({ title, description, year, category }, index) => {
+            return (
+              <Row key={title} index={index}>
+                <Year index={index}>{year}</Year>
 
-              <Event
-                index={index}
-                title={title}
-                description={description}
-                category={category}
+                <Event
+                  index={index}
+                  title={title}
+                  description={description}
+                  category={category}
+                />
+
+                <Circle index={index} />
+
+                {/* {index === events.length - 1 && <Circle />} */}
+              </Row>
+            );
+          })}
+
+          <Rosary scrollPosition={scrollPosition}>
+            <Line hide={hideScrollLine}>
+              <ScrollLine
+                scrollPosition={scrollPosition}
+                ref={scrollRef}
+                hide={hideScrollLine}
               />
-              {(index === 0 || index === events.length - 1) && <Circle />}
-
-              {index === events.length - 1 && <Circle ref={endRef} />}
-            </Row>
-          );
-        })}
-      </EventsContainer>
-      <Conclusion>
-        <h2>Where do we stand now? </h2>
-        While the Church's influence in Ireland is not what it used to be,
-        unfortunately we still don't have true separation of church and state
-        and in some aspects of society we are still living with the legacy of
-        Church control.
-        <ul>
-          <li>
-            Seven of the largest public hospitals in Ireland are owned by
-            private Catholic entities and receive more than €1 billion of State
-            funding each year.
-          </li>
-          <li>
-            Over 90 per cent of the primary schools are under Catholic patronage
-            but are State-funded. Approximately 50 per cent of secondary schools
-            operate under Catholic ethos.
-          </li>
-          <li>
-            Some restrictons on abortion remain and an estimated 200 women still
-            travel to the UK each year for the procedure.
-          </li>
-        </ul>
-      </Conclusion>
+            </Line>
+          </Rosary>
+        </EventsContainer>
+        <Conclusion>
+          <h2>Where do we stand now? </h2>
+          While the Church's influence in Ireland is not what it used to be,
+          unfortunately we still don't have true separation of church and state
+          and in some aspects of society we are still living with the legacy of
+          Church control.
+          <ul>
+            <li>
+              Seven of the largest public hospitals in Ireland are owned by
+              private Catholic entities and receive more than €1 billion of
+              State funding each year.
+            </li>
+            <li>
+              Over 90 per cent of the primary schools are under Catholic
+              patronage but are State-funded. Approximately 50 per cent of
+              secondary schools operate under Catholic ethos.
+            </li>
+            <li>
+              Some restrictons on abortion remain and an estimated 200 women
+              still travel to the UK each year for the procedure.
+            </li>
+          </ul>
+        </Conclusion>
+      </MainContent>
     </>
   );
 }
