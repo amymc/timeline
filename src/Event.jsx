@@ -9,8 +9,8 @@ const Card = styled.article`
   font-size: 16px;
   position: relative;
   width: 350px;
-  margin-right: ${(props) => (props.index % 2 === 0 ? "auto" : "70px")};
-  margin-left: ${(props) => (props.index % 2 === 0 ? "70px" : "auto")};
+  // margin-right: ${(props) => (props.index % 2 === 0 ? "auto" : "70px")};
+  // margin-left: ${(props) => (props.index % 2 === 0 ? "70px" : "auto")};
   &:after {
     position: absolute;
     top: 50%;
@@ -54,7 +54,7 @@ const colors = {
 };
 
 function Event({ category, title, description, index }) {
-  console.log(colors[category], category);
+  // console.log(colors[category], category);
   return (
     <Card index={index}>
       <CardInner color={colors[category]}>

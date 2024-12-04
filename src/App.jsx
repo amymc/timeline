@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styled from "@emotion/styled";
-import { useScroll } from "@react-spring/web";
 import Event from "./Event";
-import { useScrollHandler } from "./useScrollHandler";
 import events from "./data/events.json";
 import { colors } from "./constants";
 import "./App.css";
@@ -13,16 +11,21 @@ const Row = styled.div`
   text-align: ${(props) => (props.index % 2 === 0 ? "left" : "right")};
   width: 100%;
   justify-content: center;
-  margin-left: ${(props) => (props.index % 2 === 0 ? "395px" : "auto")};
-  margin-right: ${(props) => (props.index % 2 === 0 ? "auto" : "395px")};
+  margin-left: ${(props) => (props.index % 2 === 0 ? "47%" : "auto")};
+  margin-right: ${(props) => (props.index % 2 === 0 ? "auto" : "47%")};
   position: relative;
 `;
 
 const Line = styled.div`
+  // display: ${(props) => (props.hide ? "none" : "block")};
   width: 10px;
   height: 100%;
   position: absolute;
+  // background-color: white;
+  height: calc(100% - 720px);
+  // background-color: ${(props) => (props.hide ? "black" : "white")};
   background-color: white;
+
   left: calc(50% - 5px);
   // opacity: ${(props) => props.opacity};
   // animation-name: rotateAnimation;
@@ -59,7 +62,7 @@ const EventsContainer = styled.div`
   // justify-content: center;
   flex-wrap: wrap;
   position: relative;
-  padding-top: 150px;
+  padding: 150px 0;
 `;
 
 const Rosary = styled.div`
@@ -125,8 +128,11 @@ const Square = styled.div`
   background-color: ${(props) => props.color};
 `;
 
-const Title = styled.span`
+const LegendTitle = styled.span`
   font-weight: bold;
+`;
+const Title = styled.h1`
+  z-index: 1;
 `;
 
 const Year = styled.div`
@@ -134,13 +140,22 @@ const Year = styled.div`
   font-size: 22px;
   color: white;
   position: absolute;
-  left: ${(props) => (props.index % 2 === 0 ? "-90px" : "auto")};
-  right: ${(props) => (props.index % 2 === 0 ? "auto" : "-90px")};
-  top: calc(50% - 16px);
+  left: ${(props) => (props.index % 2 === 0 ? "-100px" : "auto")};
+  right: ${(props) => (props.index % 2 === 0 ? "auto" : "-100px")};
+  top: calc(50% - 15px);
 `;
 
 const Conclusion = styled.div`
   font-weight: bold;
+
+  background-color: white;
+  padding: 30px;
+  border-radius: 4px;
+  color: black;
+  font-weight: bold;
+  font-size: 16px;
+  position: relative;
+  text-align: justify;
 `;
 
 const RosaryContainer = styled.div`
@@ -156,22 +171,17 @@ const Circle = styled.div`
   background-color: white;
   position: absolute;
   top: calc(50% - 15px);
-  left: 18px;
-  border-radius: 1px solid red;
+  left: 15px;
   background: white;
 `;
 
 function App() {
-  console.log({ events });
-  const { scrollYProgress } = useScroll();
-  console.log({ scrollYProgress });
-
-  // const endOfPage = useRef();
-
-  const scroll = useScrollHandler();
-  console.log({ scroll });
-
   const [scrollPosition, setScrollPosition] = useState("62.5vh");
+  const [hideScrollLine, setHideScrollLine] = useState(false);
+
+  const endRef = useRef(null);
+  const scrollRef = useRef(null);
+
   const handleScroll = () => {
     // const position = window.scrollY + window.innerHeight / 2.2;
 
@@ -192,22 +202,99 @@ function App() {
     };
   }, []);
 
-  console.log({ colors });
+  function checkIfHeaderIsOverlapping() {
+    if (scrollRef.current && endRef.current) {
+      const a = scrollRef.current.getBoundingClientRect();
+      const b = endRef.current.getBoundingClientRect();
+
+      console.log("scroll", scrollRef.current.offsetTop);
+      console.log("end", endRef.current.offsetTop);
+
+      console.log(window.scrollY);
+      console.log("scroll", a, "end", b);
+      if (b.bottom <= a.bottom) {
+        console.log("hide");
+
+        setHideScrollLine(true);
+      } else {
+        setHideScrollLine(false);
+      }
+    }
+  }
+
+  useEffect(() => {
+    function watchScroll() {
+      window.addEventListener("scroll", checkIfHeaderIsOverlapping);
+    }
+    watchScroll();
+
+    return () => {
+      window.removeEventListener("scroll", checkIfHeaderIsOverlapping);
+    };
+  });
+
+  // useEffect(() => {
+  //   // let target = scrollRef.current;
+
+  //   const observer = new IntersectionObserver((entries) => {
+  //     let doesOverlap =
+  //       entries[0].boundingClientRect.y >=
+  //       scrollRef.current.getBoundingClientRect().y;
+
+  //     console.log("end ref", endRef.current.getBoundingClientRect().y);
+  //     console.log("scroll ref", entries[0].boundingClientRect.y);
+
+  //     // console.log("doesOverlap", entries[0]);
+  //     // console.log("doesOverlap", doesOverlap);
+  //     console.log(scrollRef.current.getBoundingClientRect());
+  //     console.log(entries[0].boundingClientRect);
+
+  //     if (doesOverlap) {
+  //       console.log("doesOverlap");
+  //       setHideScrollLine(true);
+  //     }
+  //     if (entries[0].isIntersecting) {
+  //       console.log("isIntersecting");
+  //     }
+  //   });
+
+  //   if (endRef.current) {
+  //     // observer.observe(endRef.current);
+  //     observer.observe(endRef.current);
+  //   }
+
+  //   return () => {
+  //     if (endRef.current) {
+  //       observer.unobserve(endRef.current);
+  //     }
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   console.log("consoleRef", consoleRef);
+  //   console.log("current", consoleRef.current);
+  //   console.log("scrollHeight", consoleRef.current.offsetHeight);
+  // }, []);
+
   return (
     <>
       <Categories>
-        <Title>Event categories</Title>
+        <LegendTitle>Event categories</LegendTitle>
         {Object.keys(colors).map((key) => (
           <Category key={key}>
             {key} <Square color={colors[key]} />
           </Category>
         ))}
       </Categories>
-      <h1> In memoriam </h1>
+      <Title> In memoriam </Title>
       {/* <RosaryContainer> */}
       <Rosary scrollPosition={scrollPosition}>
-        <Line>
-          <ScrollLine scrollPosition={scrollPosition} />
+        <Line hide={hideScrollLine}>
+          <ScrollLine
+            scrollPosition={scrollPosition}
+            ref={scrollRef}
+            hide={hideScrollLine}
+          />
         </Line>
         {/* <Beads>
           {[...Array(200)].map((e, i) => (
@@ -228,19 +315,35 @@ function App() {
                 description={description}
                 category={category}
               />
-              {index === 0 && <Circle />}
+              {(index === 0 || index === events.length - 1) && <Circle />}
+
+              {index === events.length - 1 && <Circle ref={endRef} />}
             </Row>
           );
         })}
       </EventsContainer>
       <Conclusion>
+        <h2>Where do we stand now? </h2>
         While the Church's influence in Ireland is not what it used to be,
-        unfortunately we still don't true seperation of church and state. Seven
-        of the largest public hospitals in Ireland are owned by private Catholic
-        entities and receive more than €1 billion of State funding each year.
-        Over 90 per cent of the primary schools are under Catholic patronage but
-        are State-funded. Approximately 50 per cent of secondary schools operate
-        under Catholic ethos.
+        unfortunately we still don't have true separation of church and state
+        and in some aspects of society we are still living with the legacy of
+        Church control.
+        <ul>
+          <li>
+            Seven of the largest public hospitals in Ireland are owned by
+            private Catholic entities and receive more than €1 billion of State
+            funding each year.
+          </li>
+          <li>
+            Over 90 per cent of the primary schools are under Catholic patronage
+            but are State-funded. Approximately 50 per cent of secondary schools
+            operate under Catholic ethos.
+          </li>
+          <li>
+            Some restrictons on abortion remain and an estimated 200 women still
+            travel to the UK each year for the procedure.
+          </li>
+        </ul>
       </Conclusion>
     </>
   );

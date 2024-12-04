@@ -8,6 +8,7 @@
   flex-wrap: wrap;
   position: relative;
   margin: 0 200px;
+  padding-bottom: 50px;
 }
 
 * {
