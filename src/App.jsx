@@ -7,13 +7,12 @@ import "./App.css";
 
 // 324 is height of first row
 const startPostion = 286 / 2;
-const endPosition = 552 / 3.5;
+const endPosition = 552 / 2;
 
 const Line = styled.div`
   width: 10px;
   height: 100%;
   position: absolute;
-  height: calc(100% - ${endPosition + startPostion}px);
   background-color: #f5f7f8;
 `;
 
@@ -34,8 +33,7 @@ const EventsContainer = styled.div`
 
 const Rosary = styled.div`
   width: 10px;
-  height: 100%;
-  position: absolute;
+  height: calc(100% - ${endPosition}px);
   position: absolute;
   background-color: transparent;
   left: calc(50% - 5px);

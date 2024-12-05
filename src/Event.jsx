@@ -157,7 +157,6 @@ function Event({ category, title, description, index, isLast, year }) {
           </Circle>
         </Row>
       )}
-      )
     </>
   );
 }
