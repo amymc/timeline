@@ -13,7 +13,7 @@
   },
   {
     "title": "Irish citizen, Jimmy Gralton is deported to the US",
-    "description": "Jimmy had served in the US navy and obtained US citizenship as result. On his return to Ireland he set up a local dance hall, and this combined with the fact that he was socialist drew the ire of the Catholic church among others. He was deported on the grounds that as an American citizen, he was ‘an undesirable alien’.",
+    "description": "Jimmy had served in the US navy and obtained US citizenship as a result. On his return to Ireland he set up a local dance hall, and this combined with the fact that he was socialist drew the ire of the Catholic church among others. He was deported on the grounds that as an American citizen, he was ‘an undesirable alien’.",
     "year": "Aug 1933",
     "category": "social"
   },
@@ -37,7 +37,7 @@
   },
   {
     "title": "Housewife of the year launches",
-    "description": "A competition for housewives where candidates were judged on their cooking and household management skills. It ran util 1995",
+    "description": "A competition for housewives where candidates were judged on their cooking and household management skills. It ran until 1995.",
     "year": "Nov 1968",
     "category": "social"
   },
@@ -54,14 +54,9 @@
   },
   {
     "title": "The Catholic Church is removed from the constitution",
-    "description": "A clause recognising the \\\"special position\\\" of the Church in the Irish state is removed. This passed by 84% in a referendum",
+    "description": "A clause recognising the \"special position\" of the Church in the Irish state is removed. This passed by 84% in a referendum",
     "year": "Jan 1973",
     "category": "legal"
-  },
-  {
-    "title": "Ireland joins the EEC (now the EU)",
-    "year": "Jan 1973",
-    "category": "political"
   },
   {
     "title": "The marriage bar comes to an end",
@@ -77,7 +72,7 @@
   },
   {
     "title": "May McGee wins a Supreme Court case allowing her to import contraceptives",
-    "description": "After experiencing traumatic pregancies McGee was advised that if she got pregnant again she would likely die. She tried to import contraceptives from the UK. They were confiscated by customs. She took her case to the High Court and later appealed it to the Supreme Court. The court determined that married couples had the constitutional right to make private decisions on family planning.",
+    "description": "After experiencing traumatic pregancies May was advised that if she got pregnant again she would likely die. She tried to import contraceptives from the UK. They were confiscated by customs. She took her case to the High Court and later appealed it to the Supreme Court. The court determined that married couples had the constitutional right to make private decisions on family planning.",
     "year": "Dec 1973",
     "category": "legal"
   },
@@ -95,12 +90,12 @@
   },
   {
     "title": "Pregnant, unmarried teacher Eileen Flynn is fired",
-    "description": "Parents complained that they didn't want their children taught by an unwed mother who was pregrant by a married man. She was sacked on the grounds that it was against the Catholic ethos of the school. She challenged her dismissal and took it all the way to the High Court but lost. One of the judges claimed the nuns had been too leniant with her. Bank of Ireland refused to handle an appeal fund that set up to help her fight her dismissal.",
+    "description": "Parents complained that they didn't want their children taught by an unwed mother who was pregrant by a married man. She was sacked on the grounds that it was against the Catholic ethos of the school. She challenged her dismissal and took it all the way to the High Court but lost. One of the judges claimed the nuns had been too leniant with her. Bank of Ireland refused to handle an appeal fund that was set up to help her fight her dismissal.",
     "year": "Aug 1982",
     "category": "social"
   },
   {
-    "title": "Gay man Declan Flynn murdered in Dublin",
+    "title": "Gay man, Declan Flynn murdered in Dublin",
     "description": "Attacked in a public park by 5 teenagers. All 5 walked free with suspended sentences. The judge said there was 'no element of correction required' as they had 'come from good homes'.",
     "year": "Sep 1982",
     "category": "lgbtq"
@@ -122,8 +117,8 @@
     "category": "social"
   },
   {
-    "title": "Condoms are finally available without prescription.",
-    "description": "But their sale is still restrcited to pharmacies and family planning centres.",
+    "title": "Condoms are finally available without prescription",
+    "description": "But their sale is still restricted to pharmacies and family planning centres.",
     "year": "Mar 1985",
     "category": "legal"
   },
@@ -198,7 +193,7 @@
   },
   {
     "title": "Michelle Harte is denied chemotherapy due to being pregnant",
-    "description": "Harte was undergoing cancer treatment when she learned she was pregnant. She was advised to terminate but the hospital's ethics commitee denied her the termination and also prevented her treatment from continuing. She had to travel to the UK for the termination. Due to a delayed verdict from the ethics committee and needing to order a new passport she went weeks without treatment. She died the following year.",
+    "description": "Michelle was undergoing cancer treatment when she learned she was pregnant. She was advised to terminate but the hospital's ethics commitee denied her the termination and also prevented her treatment from continuing. She had to travel to the UK for the termination. Due to a delayed verdict from the ethics committee and needing to order a new passport she went weeks without treatment. She died the following year.",
     "year": "Jun 2010",
     "category": "social"
   },
@@ -209,7 +204,7 @@
   },
   {
     "title": "Savita Halappanavar dies after being denied an abortion",
-    "description": "Savita experienced preganancy complications, but was denied an abortion as there was a foetal heatbeat. She went into septic shock. Both her and the foetus died. Her death was a catalyst for the pro-choice movement.",
+    "description": "Savita experienced pregnancy complications, but was denied an abortion as there was a foetal heatbeat. She went into septic shock. Both her and the foetus died. Her death was a catalyst for the pro-choice movement.",
     "year": "Oct 2012",
     "category": "social"
   },
@@ -244,7 +239,7 @@
   },
   {
     "title": "Government signs off on a new state maternity hospital to be built on the grounds of a Catholic order.",
-    "description": "The sign off had been delayed by controversy and protests as the public questioned whether the religious order would allow for a full range of services including terminations and IVF. This remains to be seen as the hospital has not been built yet.",
+    "description": "The sign off had been delayed by controversy and protests as the public questioned whether the religious order would allow for a full range of services including terminations and IVF. This remains to be seen as the hospital has not yet been built.",
     "year": "May 2022",
     "category": "social"
   },
