@@ -73,6 +73,7 @@ const LegendCircle = styled.div`
 
 const LegendTitle = styled.span`
   font-weight: bold;
+  margin-bottom: 6px;
 `;
 
 const Title = styled.h1`

@@ -128,7 +128,7 @@ function Event({ category, title, description, index, isLast, year }) {
             Now
           </Year>
           <Card index={index + 1}>
-            <CardInner color={colors[category]}>
+            <CardInner color="black">
               <CardTitle>The remaining legacy</CardTitle>
               {description && (
                 <Description>
@@ -153,7 +153,7 @@ function Event({ category, title, description, index, isLast, year }) {
             </CardInner>
           </Card>
           <Circle index={index + 1}>
-            <CircleInner color={colors[category]} />
+            <CircleInner color="black" />
           </Circle>
         </Row>
       )}
